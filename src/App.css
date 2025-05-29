@@ -7,6 +7,32 @@
   pointer-events: none;
 }
 
+.video-banner {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.video-content {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -35,4 +61,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* FAQ Answer customization */
+.faq-answer {
+  font-style: italic;
+  color: #555; /* softer gray */
+  background-color: #f8f9fa; /* light gray background */
+  border-left: 4px solid #007bff; /* blue vertical line to highlight */
+  padding-left: 1rem;
+  border-radius: 0 0.25rem 0.25rem 0;
 }
