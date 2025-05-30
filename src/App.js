@@ -11,6 +11,7 @@ import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DealDetails from './DealDetails';
+import DealDetailsBuilder from './DealDetailsBuilder';
 
 function Homepage() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -210,9 +211,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/deal-details" element={<DealDetails />} />
+        <Route path="/dealdetailsbuilder" element={<DealDetailsBuilder />} />
       </Routes>
     </Router>
   );
 }
-
 export default App;
