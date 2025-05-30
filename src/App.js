@@ -1,23 +1,19 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import "./AppAnimations.css"; // For fade-in animation etc.
+import "./AppAnimations.css";
 import valuesImg from './assets/images/values.avif';
 import softwareImg from './assets/images/software-on-mission.avif';
 import dealImg from './assets/images/deal.jpg';
 import aiImg from './assets/images/ai-image.png';
 import businessVideo from "./assets/videos/business.mp4";
-
 import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DealDetails from './DealDetails';
 
-function App() {
-  // Contact form state
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+function Homepage() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [phone, setPhone] = useState("");
   const [submitStatus, setSubmitStatus] = useState("");
 
@@ -27,17 +23,11 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Basic validation
     if (!formData.name || !formData.email || !phone || !formData.message) {
       setSubmitStatus("Please fill all fields.");
       return;
     }
-
-    // Here you would typically call an API or EmailJS to send email.
-    // For demo, just logging and showing success message:
     console.log("Contact form submitted:", { ...formData, phone });
-
     setSubmitStatus("Thank you! Your message has been sent.");
     setFormData({ name: "", email: "", message: "" });
     setPhone("");
@@ -65,7 +55,6 @@ function App() {
       <div className="video-banner">
         <video autoPlay muted loop playsInline className="video-content">
           <source src={businessVideo} type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
         <div className="video-overlay d-flex flex-column justify-content-center align-items-center text-white text-center">
           <div className="overlay-glass p-4 rounded shadow-lg">
@@ -79,15 +68,12 @@ function App() {
         </div>
       </div>
 
-      {/* Values Section */}
+      {/* Sections */}
       <div className="container py-5">
         <div className="row align-items-center">
           <div className="col-md-6">
             <h2>Where Values and Business Meet</h2>
-            <p>
-              We believe in alignment, transparency, accountability, safety, autonomy,
-              and charity with every deal and interaction.
-            </p>
+            <p>We believe in alignment, transparency, accountability, safety, autonomy, and charity with every deal and interaction.</p>
           </div>
           <div className="col-md-6">
             <img src={valuesImg} alt="Values" className="img-fluid rounded" />
@@ -95,7 +81,6 @@ function App() {
         </div>
       </div>
 
-      {/* Software on a Mission */}
       <div className="container py-5 bg-light fade-in">
         <div className="row align-items-center">
           <div className="col-md-6">
@@ -103,15 +88,11 @@ function App() {
           </div>
           <div className="col-md-6">
             <h2>Software on a Mission</h2>
-            <p>
-              Our platform embodies these values in every interaction. We’re not just managing
-              deals – we’re driving impact through thoughtful design and ethical innovation.
-            </p>
+            <p>Our platform embodies these values in every interaction. We’re not just managing deals – we’re driving impact through thoughtful design and ethical innovation.</p>
           </div>
         </div>
       </div>
 
-      {/* Deal Management Platform */}
       <div className="container py-5">
         <div className="row align-items-center">
           <div className="col-md-6">
@@ -129,18 +110,14 @@ function App() {
         </div>
       </div>
 
-      {/* AI Built For You */}
       <div className="container py-5 bg-light fade-in">
         <div className="row align-items-center">
           <div className="col-md-6">
             <h2>AI Built For You</h2>
-            <p>
-              Our AI features are tailor-made to help you close deals faster and smarter, offering
-              predictive insights and automation tools for efficiency and growth.
-            </p>
+            <p>Our AI features are tailor-made to help you close deals faster and smarter, offering predictive insights and automation tools for efficiency and growth.</p>
           </div>
           <div className="col-md-6">
-            <img src={aiImg} alt="AI image" className="img-fluid rounded" />
+            <img src={aiImg} alt="AI" className="img-fluid rounded" />
           </div>
         </div>
       </div>
@@ -156,9 +133,7 @@ function App() {
               </button>
             </h2>
             <div id="a1" className="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-              <div className="accordion-body faq-answer">
-                DealsPro is a next-gen deal registration and management platform.
-              </div>
+              <div className="accordion-body">DealsPro is a next-gen deal registration and management platform.</div>
             </div>
           </div>
           <div className="accordion-item">
@@ -168,39 +143,21 @@ function App() {
               </button>
             </h2>
             <div id="a2" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div className="accordion-body faq-answer">
-                You can sign up and use our partner dashboard to submit deals easily.
-              </div>
+              <div className="accordion-body">You can sign up and use our partner dashboard to submit deals easily.</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Contact Form */}
+      {/* Contact */}
       <div className="container py-5">
         <h2 className="text-center mb-4">Contact Us</h2>
         <form onSubmit={handleSubmit} style={{ maxWidth: "600px", margin: "auto" }}>
           <div className="mb-3">
-            <input
-              type="text"
-              className="form-control form-control-lg"
-              placeholder="Name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" className="form-control form-control-lg" placeholder="Name" name="name" value={formData.name} onChange={handleChange} required />
           </div>
           <div className="mb-3">
-            <input
-              type="email"
-              className="form-control form-control-lg"
-              placeholder="Email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+            <input type="email" className="form-control form-control-lg" placeholder="Email" name="email" value={formData.email} onChange={handleChange} required />
           </div>
           <div className="mb-3">
             <PhoneInput
@@ -208,39 +165,22 @@ function App() {
               value={phone}
               onChange={setPhone}
               onlyCountries={["us", "in", "ca"]}
-              inputProps={{
-                name: "phone",
-                required: true,
-                autoFocus: false,
-              }}
+              inputProps={{ name: "phone", required: true }}
               containerClass="phone-input-container"
               inputClass="form-control form-control-lg"
-              // buttonClass="btn btn-outline-secondary"
               buttonClass="flag-dropdown"
             />
           </div>
           <div className="mb-3">
-            <textarea
-              className="form-control form-control-lg"
-              rows="5"
-              placeholder="Message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            ></textarea>
+            <textarea className="form-control form-control-lg" rows="5" placeholder="Message" name="message" value={formData.message} onChange={handleChange} required></textarea>
           </div>
-
           {submitStatus && (
             <div className={`mb-3 text-center ${submitStatus.startsWith("Thank") ? "text-success" : "text-danger"}`}>
               {submitStatus}
             </div>
           )}
-
           <div className="text-center">
-            <button type="submit" className="btn btn-primary btn-lg px-5">
-              Submit
-            </button>
+            <button type="submit" className="btn btn-primary btn-lg px-5">Submit</button>
           </div>
         </form>
       </div>
@@ -261,6 +201,17 @@ function App() {
         <small>Built with ❤️ using React + Bootstrap</small>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/deal-details" element={<DealDetails />} />
+      </Routes>
+    </Router>
   );
 }
 

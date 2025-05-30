@@ -1,0 +1,17 @@
+.deal-details h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.deal-details ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.image-thumbnails img {
+  transition: transform 0.2s;
+}
+
+.image-thumbnails img:hover {
+  transform: scale(1.05);
+}
