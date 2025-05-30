@@ -1,11 +1,12 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import "./AppAnimations.css"; // We'll define this for animation classes
+import "./AppAnimations.css"; // For fade-in animation etc.
 import valuesImg from './assets/images/values.avif';
 import softwareImg from './assets/images/software-on-mission.avif';
 import dealImg from './assets/images/deal.jpg';
 import aiImg from './assets/images/ai-image.png';
+import businessVideo from "./assets/videos/business.mp4";
 
 function App() {
   return (
@@ -29,15 +30,17 @@ function App() {
       {/* Video Banner */}
       <div className="video-banner">
         <video autoPlay muted loop playsInline className="video-content">
-          <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+          <source src={businessVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="video-overlay text-center text-white">
-          <h1 className="display-4">Welcome to DealsPro</h1>
-          <p className="lead">Where smart deals meet smart people.</p>
-          <div>
-            <button className="btn btn-primary m-2">Get Started</button>
-            <button className="btn btn-outline-light m-2">Request a Demo</button>
+        <div className="video-overlay d-flex flex-column justify-content-center align-items-center text-white text-center">
+          <div className="overlay-glass p-4 rounded shadow-lg">
+            <h1 className="display-4 fw-bold mb-3">Welcome to DealsPro</h1>
+            <p className="lead mb-4">Where smart deals meet smart people.</p>
+            <div>
+              <button className="btn btn-primary btn-lg mx-2">Get Started</button>
+              <button className="btn btn-outline-light btn-lg mx-2">Request a Demo</button>
+            </div>
           </div>
         </div>
       </div>
@@ -53,14 +56,7 @@ function App() {
             </p>
           </div>
           <div className="col-md-6">
-          <img src={valuesImg} alt="Values" className="img-fluid rounded" />
-
-          {/* <img
-  src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?auto=format&fit=crop&w=800&q=80"
-  alt="Values"
-  className="img-fluid rounded"
-/> */}
-
+            <img src={valuesImg} alt="Values" className="img-fluid rounded" />
           </div>
         </div>
       </div>
@@ -69,12 +65,7 @@ function App() {
       <div className="container py-5 bg-light fade-in">
         <div className="row align-items-center">
           <div className="col-md-6">
-          <img src={softwareImg} alt="Software Mission" className="img-fluid rounded" />
-          {/* <img
-  src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80"
-  alt="Software Mission"
-  className="img-fluid rounded"
-/> */}
+            <img src={softwareImg} alt="Software Mission" className="img-fluid rounded" />
           </div>
           <div className="col-md-6">
             <h2>Software on a Mission</h2>
@@ -99,13 +90,7 @@ function App() {
             </ul>
           </div>
           <div className="col-md-6">
-          <img src={dealImg} alt="Deal Platform" className="img-fluid rounded" />
-          {/* <img
-  src="https://unsplash.com/photos/man-using-smartphone-on-chair-8YG31Xn4dSw?auto=format&fit=crop&w=800&q=80"
-  alt="Deal Platform"
-  className="img-fluid rounded"
-/> */}
-
+            <img src={dealImg} alt="Deal Platform" className="img-fluid rounded" />
           </div>
         </div>
       </div>
@@ -121,70 +106,41 @@ function App() {
             </p>
           </div>
           <div className="col-md-6">
-          <img src={aiImg} alt="AI image" className="img-fluid rounded" />
-          {/* <img
-  src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80"
-  alt="AI Tools"
-  className="img-fluid rounded"
-/> */}
-
+            <img src={aiImg} alt="AI image" className="img-fluid rounded" />
           </div>
         </div>
       </div>
 
       {/* FAQ */}
-<div className="container py-5">
-  <h2 className="mb-4 text-center">Frequently Asked Questions</h2>
-  <div className="accordion" id="faqAccordion">
-    <div className="accordion-item">
-      <h2 className="accordion-header" id="q1">
-        <button
-          className="accordion-button"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#a1"
-          aria-expanded="true"
-          aria-controls="a1"
-        >
-          What is DealsPro?
-        </button>
-      </h2>
-      <div
-        id="a1"
-        className="accordion-collapse collapse show"
-        data-bs-parent="#faqAccordion"
-      >
-        <div className="accordion-body faq-answer">
-          DealsPro is a next-gen deal registration and management platform.
+      <div className="container py-5">
+        <h2 className="mb-4 text-center">Frequently Asked Questions</h2>
+        <div className="accordion" id="faqAccordion">
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="q1">
+              <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">
+                What is DealsPro?
+              </button>
+            </h2>
+            <div id="a1" className="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div className="accordion-body faq-answer">
+                DealsPro is a next-gen deal registration and management platform.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="q2">
+              <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+                How do I register my deals?
+              </button>
+            </h2>
+            <div id="a2" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div className="accordion-body faq-answer">
+                You can sign up and use our partner dashboard to submit deals easily.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div className="accordion-item">
-      <h2 className="accordion-header" id="q2">
-        <button
-          className="accordion-button collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#a2"
-          aria-expanded="false"
-          aria-controls="a2"
-        >
-          How do I register my deals?
-        </button>
-      </h2>
-      <div
-        id="a2"
-        className="accordion-collapse collapse"
-        data-bs-parent="#faqAccordion"
-      >
-        <div className="accordion-body faq-answer">
-          You can sign up and use our partner dashboard to submit deals easily.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 
       {/* Contact Form */}
       <div className="container py-5">
