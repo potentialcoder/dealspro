@@ -28,10 +28,10 @@ const dealData = {
   publisher: "John Doe",
   amount: "$5,000,000",
   company: {
-    name: "Cutting Edge Properties",
+    name: "Modern Properties",
     location: "742 Evergreen Terrace, Springfield, NY, USA",
     about:
-      "Cutting Edge Properties is a leading real estate firm specializing in high-value commercial and residential spaces across metropolitan areas. Our mission is to unlock exceptional investment opportunities.",
+      "Modern Properties is a leading real estate firm specializing in high-value commercial and residential spaces across metropolitan areas. Our mission is to unlock exceptional investment opportunities.",
   },
   details: "This deal includes a commercial property in downtown New York.",
   description:
