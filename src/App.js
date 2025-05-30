@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./AppAnimations.css"; // For fade-in animation etc.
@@ -8,7 +8,41 @@ import dealImg from './assets/images/deal.jpg';
 import aiImg from './assets/images/ai-image.png';
 import businessVideo from "./assets/videos/business.mp4";
 
+import PhoneInput from "react-phone-input-2";
+import 'react-phone-input-2/lib/style.css';
+
 function App() {
+  // Contact form state
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [phone, setPhone] = useState("");
+  const [submitStatus, setSubmitStatus] = useState("");
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    if (!formData.name || !formData.email || !phone || !formData.message) {
+      setSubmitStatus("Please fill all fields.");
+      return;
+    }
+
+    // Here you would typically call an API or EmailJS to send email.
+    // For demo, just logging and showing success message:
+    console.log("Contact form submitted:", { ...formData, phone });
+
+    setSubmitStatus("Thank you! Your message has been sent.");
+    setFormData({ name: "", email: "", message: "" });
+    setPhone("");
+  };
+
   return (
     <div>
       {/* Navbar */}
@@ -145,18 +179,68 @@ function App() {
       {/* Contact Form */}
       <div className="container py-5">
         <h2 className="text-center mb-4">Contact Us</h2>
-        <form>
+        <form onSubmit={handleSubmit} style={{ maxWidth: "600px", margin: "auto" }}>
           <div className="mb-3">
-            <input type="text" className="form-control" placeholder="Name" required />
+            <input
+              type="text"
+              className="form-control form-control-lg"
+              placeholder="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="mb-3">
-            <input type="email" className="form-control" placeholder="Email" required />
+            <input
+              type="email"
+              className="form-control form-control-lg"
+              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="mb-3">
-            <textarea className="form-control" rows="4" placeholder="Message" required></textarea>
+            <PhoneInput
+              country={"us"}
+              value={phone}
+              onChange={setPhone}
+              onlyCountries={["us", "in", "ca"]}
+              inputProps={{
+                name: "phone",
+                required: true,
+                autoFocus: false,
+              }}
+              containerClass="phone-input-container"
+              inputClass="form-control form-control-lg"
+              // buttonClass="btn btn-outline-secondary"
+              buttonClass="flag-dropdown"
+            />
           </div>
+          <div className="mb-3">
+            <textarea
+              className="form-control form-control-lg"
+              rows="5"
+              placeholder="Message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+          </div>
+
+          {submitStatus && (
+            <div className={`mb-3 text-center ${submitStatus.startsWith("Thank") ? "text-success" : "text-danger"}`}>
+              {submitStatus}
+            </div>
+          )}
+
           <div className="text-center">
-            <button className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary btn-lg px-5">
+              Submit
+            </button>
           </div>
         </form>
       </div>
@@ -173,7 +257,7 @@ function App() {
 
       {/* Footer */}
       <footer className="bg-dark text-white text-center py-4 fade-in">
-        <p className="mb-1">© {new Date().getFullYear()} DealsPro. All rights reserved.</p>
+        <p className="mb-0">© 2025 DealsPro. All rights reserved.</p>
         <small>Built with ❤️ using React + Bootstrap</small>
       </footer>
     </div>
