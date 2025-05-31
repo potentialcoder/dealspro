@@ -4,7 +4,8 @@ import React from "react";
 export default function CompanyInfo() {
   return (
     <aside className="company-sidebar" aria-label="Company information">
-      <section className="company-details">
+      {/* Company Details Section */}
+      <section className="company-details bordered-section">
         <div className="company-header">
           <div
             dangerouslySetInnerHTML={{
@@ -27,15 +28,14 @@ export default function CompanyInfo() {
         </div>
       </section>
 
-      <section className="about-section">
+      {/* About Section */}
+      <section className="about-section bordered-section">
         <h3 className="about-title">About</h3>
         <p className="about-text">
-          <span>
-            Our X Ray Film imager/printer is based on LASER TECHNOLOGY
-            manufactured by market leader CARESTREAM USA. CARESTREAM is the
-            world's largest manufacturer of X Ray Films and X Ray Film Printers.
-          </span>
-          <span className="read-more">read more...</span>
+          Our X Ray Film imager/printer is based on LASER TECHNOLOGY
+          manufactured by market leader CARESTREAM USA. CARESTREAM is the
+          world's largest manufacturer of X Ray Films and X Ray Film Printers.
+          <span className="read-more"> read more...</span>
         </p>
 
         <div className="timer-section">
@@ -52,7 +52,7 @@ export default function CompanyInfo() {
       </section>
 
       {/* Sticky Footer Buttons */}
-      <footer className="company-buttons">
+      <footer className="company-buttons bordered-section">
         <button
           className="apply-button"
           disabled
@@ -84,10 +84,19 @@ export default function CompanyInfo() {
           font-family: "Arial", sans-serif;
           color: #222;
           overflow-y: auto;
+          gap: 20px; /* gap between sections */
+        }
+
+        .bordered-section {
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          background: #fff;
+          padding: 16px 16px 20px 16px;
         }
 
         .company-details {
-          margin-bottom: 20px;
+          display: flex;
+          flex-direction: column;
         }
 
         .company-header {
@@ -113,7 +122,6 @@ export default function CompanyInfo() {
           gap: 8px;
           font-size: 0.9rem;
           color: #555;
-          margin-bottom: 20px;
         }
 
         .location-icon path {
@@ -126,91 +134,93 @@ export default function CompanyInfo() {
         }
 
         .about-section {
-          flex-grow: 1;
-          overflow-y: auto;
-          margin-bottom: 80px; /* space for footer buttons */
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
         }
 
         .about-title {
+          font-weight: 700;
           font-size: 1.1rem;
-          font-weight: 600;
-          margin-bottom: 10px;
+          margin: 0 0 8px 0;
         }
 
         .about-text {
-          font-size: 0.95rem;
-          line-height: 1.4;
+          font-size: 0.9rem;
+          line-height: 1.3;
+          margin: 0;
           color: #444;
         }
 
         .read-more {
           color: #0070f3;
           cursor: pointer;
-          margin-left: 5px;
           font-weight: 600;
         }
 
         .timer-section {
-          margin-top: 20px;
+          margin-top: 8px;
+          border-top: 1px solid #ddd;
+          padding-top: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: 600;
+          font-size: 0.95rem;
+          color: #555;
         }
 
         .timer-title {
-          font-weight: 600;
-          font-size: 1rem;
-          margin-bottom: 6px;
+          margin: 0;
         }
 
         .timer-display {
-          font-weight: 700;
-          font-size: 1.2rem;
-          color: #333;
-          user-select: none;
+          font-family: monospace;
+          font-size: 1rem;
+          color: #222;
         }
 
         .timer-number {
           margin: 0 2px;
+          font-weight: 700;
         }
 
         .timer-unit {
-          margin-right: 6px;
           font-weight: 400;
-          color: #666;
+          margin-right: 4px;
         }
 
-        /* Sticky Footer Buttons */
         .company-buttons {
           position: sticky;
-          bottom: 12px;
+          bottom: 0;
           display: flex;
-          justify-content: space-between;
-          gap: 12px;
-          padding: 4px 0; /* reduced vertical padding */
-          background: transparent;
-          z-index: 10;
+          gap: 16px;
+          justify-content: center;
+          padding-top: 14px;
+          background: #fff;
         }
 
-        button.apply-button,
-        button.connect-button {
+        .apply-button,
+        .connect-button {
           flex: 1;
-          font-size: 1rem;
-          font-weight: 600;
           padding: 12px 0;
+          font-weight: 700;
+          font-size: 1rem;
           border-radius: 6px;
           border: none;
           cursor: not-allowed;
-          box-shadow: inset 0 0 0 1.8px #bbb;
-          background-color: #ddd;
-          color: #888;
-          transition: background-color 0.2s ease, color 0.2s ease;
-          user-select: none;
+          opacity: 0.6;
+          transition: opacity 0.3s ease;
         }
 
-        button.apply-button:disabled,
-        button.connect-button:disabled {
+        .apply-button {
           background-color: #ddd;
-          color: #888;
-          box-shadow: inset 0 0 0 1.8px #bbb;
-          cursor: not-allowed;
+          color: #666;
+        }
+
+        .connect-button {
+          background-color: #0070f3;
+          color: white;
         }
       `}</style>
     </aside>
